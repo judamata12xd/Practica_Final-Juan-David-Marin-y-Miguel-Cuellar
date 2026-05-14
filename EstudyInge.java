@@ -1,4 +1,4 @@
-public class EstudiantesIngenieria {
+public class EstudyInge {
 
     private String cedula;
     private String nombre;
@@ -8,7 +8,7 @@ public class EstudiantesIngenieria {
     private double promedio;
     private String serial;
 
-    public EstudiantesIngenieria() {
+    public EstudyInge() {
     }
 
     public String getCedula() {

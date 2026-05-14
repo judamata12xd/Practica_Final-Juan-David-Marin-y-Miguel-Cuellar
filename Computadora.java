@@ -1,7 +1,7 @@
 public class Computadora {
 
     private String serial;
-    private String margca;
+    private String marca;
     private double tamaño;
     private double precio;
     private String sistemaOperativo;
@@ -18,12 +18,12 @@ public class Computadora {
         this.serial = serial;
     }
 
-    public String getMargca() {
-        return margca;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setMargca(String margca) {
-        this.margca = margca;
+    public void setMargca(String marca) {
+        this.marca = marca;
     }
 
     public double getTamaño() {

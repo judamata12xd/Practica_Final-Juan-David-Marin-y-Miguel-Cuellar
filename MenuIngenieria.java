@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class MenuIngenieria {
 
-    public void MenuIng() {
-        LinkedList<EstudiantesIngenieria> l = new LinkedList<>();
+    public void MenuIng(LinkedList<EstudyInge> l, LinkedList<Computadora> c,LinkedList<Tableta> t) {
+        metodos m = new metodos();
         Scanner sc = new Scanner(System.in);
         boolean bandera = true;
 
@@ -20,10 +20,10 @@ public class MenuIngenieria {
 
             switch (opt) {
                 case 1:
-                    System.out.println("Sistema en mantenimiento");
+                  l = m.PrestamoING(t, c, l);
                     break;
                 case 2:
-                    System.out.println("Sistema en mantenimiento");
+                    l = m.RegistarIng(l);
                     break;
                 case 3:
                     System.out.println("Sistema en mantenimiento");
@@ -36,7 +36,7 @@ public class MenuIngenieria {
                     bandera = false;
                     break;
                 default:
-                    System.out.println("Opcion no implementada");;
+                    System.out.println("Opcion no implementada");
             }
         }
     }
