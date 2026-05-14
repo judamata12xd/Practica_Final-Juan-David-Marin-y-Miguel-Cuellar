@@ -1,4 +1,4 @@
-public class EstudaintesDiseño {
+public class EstudiDiseño {
 
     private String cedula;
     private String nombre;
@@ -8,7 +8,7 @@ public class EstudaintesDiseño {
     private int cantidadAsignaturas;
     private int serial;
 
-    public EstudaintesDiseño() {
+    public EstudiDiseño() {
     }
 
     public String getCedula() {
@@ -66,8 +66,4 @@ public class EstudaintesDiseño {
     public void setSerial(int serial) {
         this.serial = serial;
     }
-
-    
-
-    
 }

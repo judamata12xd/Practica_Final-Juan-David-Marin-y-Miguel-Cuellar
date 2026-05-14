@@ -1,4 +1,5 @@
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class MenuPrincipal {
@@ -9,6 +10,11 @@ public class MenuPrincipal {
         boolean seguir = true;
         MenuIngenieria mening = new MenuIngenieria();
         MenuDiseño mendis = new MenuDiseño();
+        metodos m = new metodos();
+        LinkedList<EstudyInge> inge = new LinkedList<>();
+        LinkedList<EstudiDiseño> dis = new LinkedList<>();
+        LinkedList<Computadora> c = new LinkedList<>();
+        LinkedList<Tableta> t = new LinkedList<>();
 
         while (seguir) {
             System.out.println("Bienvenido a el sistema de prestamos ITM :D");
@@ -21,13 +27,14 @@ public class MenuPrincipal {
 
             switch (opt) {
                 case 1:
-                    mening.MenuIng();
+                    mening.MenuIng(inge,c,t);
                     break;
                 case 2:
-                    mendis.Menudis();
+                    mendis.Menudis(dis,c,t);
                     break;
                 case 3:
-                    System.out.println("Sistema en mantenimiento");
+                    m.MostarIng(inge, c, t);
+                    m.MostarDIS(dis, c, t);
                     break;
                 case 4:
                     seguir = false;

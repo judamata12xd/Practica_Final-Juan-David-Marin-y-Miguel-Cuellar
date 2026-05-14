@@ -4,10 +4,9 @@ import java.util.Scanner;
 
 public class MenuDiseño {
 
-    public void Menudis(){
-
-        LinkedList<EstudaintesDiseño> l = new LinkedList<>();
+    public void Menudis(LinkedList<EstudiDiseño> l, LinkedList<Computadora> c,LinkedList<Tableta> t){
         Scanner sc = new Scanner(System.in);
+        metodos m = new metodos();
         boolean bandera = true;
 
           while (bandera) {
@@ -22,10 +21,10 @@ public class MenuDiseño {
 
             switch (opt) {
                 case 1:
-                    System.out.println("Sistema en mantenimiento");
+                    l = m.prestamoDis(l, c, t);
                     break;
                 case 2:
-                    System.out.println("Sistema en mantenimiento");
+                    l = m.RegistarDis(l);
                     break;
                 case 3:
                     System.out.println("Sistema en mantenimiento");

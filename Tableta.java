@@ -4,7 +4,7 @@ public class Tableta {
     private String marca;
     private double tamaño;
     private double precio;
-    private int almacenamiento;
+    private String almacenamiento;
     private double peso;
 
     public Tableta() {
@@ -42,19 +42,19 @@ public class Tableta {
         this.precio = precio;
     }
 
-    public int getAlmacenamiento() {
-        return almacenamiento;
-    }
-
-    public void setAlmacenamiento(int almacenamiento) {
-        this.almacenamiento = almacenamiento;
-    }
-
     public double getPeso() {
         return peso;
     }
 
     public void setPeso(double peso) {
         this.peso = peso;
+    }
+
+    public String getAlmacenamiento() {
+        return almacenamiento;
+    }
+
+    public void setAlmacenamiento(String almacenamiento) {
+        this.almacenamiento = almacenamiento;
     }
 }
