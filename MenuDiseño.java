@@ -24,10 +24,22 @@ public class MenuDiseño {
                     l = m.prestamoDis(l, c, t);
                     break;
                 case 2:
-                    l = m.RegistarDis(l);
+                    System.out.println("¿Como desea buscar a el estudiante?");
+                    System.out.println("1. cedula");
+                    System.out.println("2. Serial");
+                    int bus = sc.nextInt();
+                    if(bus == 1){
+                        System.out.println("Ingrese la cedula");
+                        String cedu = sc.next();
+                        l = m.ModificarDIS(l, cedu);
+                    } else {
+                        System.out.println("Ingrese el serial");
+                        int seri = sc.nextInt();
+                        l = m.ModificarDIS1(l, seri);
+                    } 
                     break;
                 case 3:
-                    System.out.println("Sistema en mantenimiento");
+                    l = m.RegistarDis(l);
                     break;
                 case 4:
                     System.out.println("Sistema en mantenimiento");

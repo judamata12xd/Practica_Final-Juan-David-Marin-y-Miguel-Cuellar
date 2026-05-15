@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class MenuIngenieria {
 
-    public void MenuIng(LinkedList<EstudyInge> l, LinkedList<Computadora> c,LinkedList<Tableta> t) {
+    public void MenuIng(LinkedList<EstudyInge> l, LinkedList<Computadora> c, LinkedList<Tableta> t) {
         metodos m = new metodos();
         Scanner sc = new Scanner(System.in);
         boolean bandera = true;
@@ -20,13 +20,15 @@ public class MenuIngenieria {
 
             switch (opt) {
                 case 1:
-                  l = m.PrestamoING(t, c, l);
+                    l = m.PrestamoING(t, c, l);
                     break;
                 case 2:
-                    l = m.RegistarIng(l);
+                    System.out.println("Ingrese la cedula o el serial del estudiante que quiera moficar");
+                    String modi = sc.next();
+                    l = m.ModificarING(l, modi);
                     break;
                 case 3:
-                    System.out.println("Sistema en mantenimiento");
+                    l = m.RegistarIng(l);
                     break;
                 case 4:
                     System.out.println("Sistema en mantenimiento");
