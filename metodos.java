@@ -69,6 +69,76 @@ public class metodos {
         return l;
     }
 
+    public Computadora RegistroPC(String Serial) {
+        Computadora pc = new Computadora();
+        pc.setSerial(Serial);
+        System.out.println("Ingrese la marca");
+        pc.setMargca(sc.next());
+        System.out.println("Ingrese tamaño");
+        pc.setTamaño(sc.nextDouble());
+        System.out.println("Ingrese el precio");
+        pc.setPrecio(sc.nextDouble());
+        System.out.println("Seleccione el sistema operativo");
+        System.out.println("1. Windows 7");
+        System.out.println("2. Windows 10");
+        System.out.println("3. Windows 11");
+        int sis = sc.nextInt();
+        switch (sis) {
+            case 1:
+                pc.setSistemaOperativo("Windows 7");
+                break;
+            case 2:
+                pc.setSistemaOperativo("Windows 10");
+                break;
+            case 3:
+                pc.setSistemaOperativo("Windows 11");
+                break;
+        }
+        System.out.println("Seleccione procesador");
+        System.out.println("1.AMD Ryzen");
+        System.out.println("2. Intel Core i5");
+        int pro = sc.nextInt();
+        switch (pro) {
+            case 1:
+                pc.setProcesador("AMD Ryzen");
+                break;
+            case 2:
+                pc.setProcesador("Intel Core i5");
+                break;
+        }
+        return pc;
+    }
+
+    public Tableta RegistarTab(String serial) {
+        Tableta tab = new Tableta();
+        tab.setSerial(serial);
+        System.out.println("Ingrese la marca");
+        tab.setMarca(sc.next());
+        System.out.println("Ingrese tamaño");
+        tab.setTamaño(sc.nextDouble());
+        System.out.println("Ingrese el precio");
+        tab.setPrecio(sc.nextDouble());
+        System.out.println("Seleccione el almacenamiento");
+        System.out.println("1. 256 GB");
+        System.out.println("2. 512 GB");
+        System.out.println("3. 1 TB");
+        int alm = sc.nextInt();
+        switch (alm) {
+            case 1:
+                tab.setAlmacenamiento("256 GB");
+                break;
+            case 2:
+                tab.setAlmacenamiento("512 GB");
+                break;
+            case 3:
+                tab.setAlmacenamiento("1 TB");
+                break;
+        }
+        System.out.println("Ingrese el peso");
+        tab.setPeso(sc.nextDouble());
+        return tab;
+    }
+
     public LinkedList<EstudyInge> PrestamoING(LinkedList<Tableta> t, LinkedList<Computadora> c,
             LinkedList<EstudyInge> l) {
 
@@ -76,7 +146,6 @@ public class metodos {
             System.out.println("No hay estudiantes registrados");
             return l;
         }
-
         System.out.println("Ingrese la cedula del estudiante:");
         String cedula = sc.next();
         EstudyInge o = null;
@@ -98,81 +167,22 @@ public class metodos {
 
             switch (pres) {
                 case 1:
-                    Computadora pc = new Computadora();
                     System.out.println("Ingrese el serial");
-                    pc.setSerial(sc.next());
-                    System.out.println("Ingrese la marca");
-                    pc.setMargca(sc.next());
-                    System.out.println("Ingrese tamaño");
-                    pc.setTamaño(sc.nextDouble());
-                    System.out.println("Ingrese el precio");
-                    pc.setPrecio(sc.nextDouble());
-                    System.out.println("Seleccione el sistema operativo");
-                    System.out.println("1. Windows 7");
-                    System.out.println("2. Windows 10");
-                    System.out.println("3. Windows 11");
-                    int sis = sc.nextInt();
-                    switch (sis) {
-                        case 1:
-                            pc.setSistemaOperativo("Windows 7");
-                            break;
-                        case 2:
-                            pc.setSistemaOperativo("Windows 10");
-                            break;
-                        case 3:
-                            pc.setSistemaOperativo("Windows 11");
-                            break;
-                    }
-                    System.out.println("Seleccione procesador");
-                    System.out.println("1.AMD Ryzen");
-                    System.out.println("2. Intel Core i5");
-                    int pro = sc.nextInt();
-                    switch (pro) {
-                        case 1:
-                            pc.setProcesador("AMD Ryzen");
-                            break;
-                        case 2:
-                            pc.setProcesador("Intel Core i5");
-                            break;
-                    }
+                    String serialPC = sc.next();
+                    Computadora pc = RegistroPC(serialPC);
                     c.add(pc);
                     o.setSerial(pc.getSerial());
                     System.out.println("Prestamo realizado");
                     break;
                 case 2:
-                    Tableta tab = new Tableta();
                     System.out.println("Ingrese el serial");
-                    tab.setSerial(sc.next());
-                    System.out.println("Ingrese la marca");
-                    tab.setMarca(sc.next());
-                    System.out.println("Ingrese tamaño");
-                    tab.setTamaño(sc.nextDouble());
-                    System.out.println("Ingrese el precio");
-                    tab.setPrecio(sc.nextDouble());
-                    System.out.println("Seleccione el almacenamiento");
-                    System.out.println("1. 256 GB");
-                    System.out.println("2. 512 GB");
-                    System.out.println("3. 1 TB");
-                    int alm = sc.nextInt();
-                    switch (alm) {
-                        case 1:
-                            tab.setAlmacenamiento("256 GB");
-                            break;
-                        case 2:
-                            tab.setAlmacenamiento("512 GB");
-                            break;
-                        case 3:
-                            tab.setAlmacenamiento("1 TB");
-                            break;
-                    }
-                    System.out.println("Ingrese el peso");
-                    tab.setPeso(sc.nextDouble());
+                    String serialTAB = sc.next();
+                    Tableta tab = RegistarTab(serialTAB);
                     t.add(tab);
                     o.setSerial(tab.getSerial());
                     System.out.println("Prestamo realizado ");
                     break;
             }
-
         } else {
             System.out.println("Estudiante no encontrado");
         }
@@ -231,7 +241,8 @@ public class metodos {
         System.out.println("-------------------------------------------------");
     }
 
-    public LinkedList<EstudiDiseño> prestamoDis(LinkedList<EstudiDiseño> l,LinkedList<Computadora> c, LinkedList<Tableta> t){
+    public LinkedList<EstudiDiseño> prestamoDis(LinkedList<EstudiDiseño> l, LinkedList<Computadora> c,
+            LinkedList<Tableta> t) {
 
         if (l.isEmpty()) {
             System.out.println("No hay estudiantes registrados");
@@ -247,7 +258,7 @@ public class metodos {
             }
         }
         if (o != null) {
-            if(o.getSerial() > 0){
+            if (o.getSerial() > 0) {
                 System.out.println("El estudiante ya tiene equipo con el serial: " + o.getSerial());
                 return l;
             }
@@ -258,77 +269,17 @@ public class metodos {
 
             switch (pres) {
                 case 1:
-                    Computadora pc = new Computadora();
                     System.out.println("Ingrese el serial");
                     int serialPC = sc.nextInt();
-                    pc.setSerial(String.valueOf(serialPC));
-                    System.out.println("Ingrese la marca");
-                    pc.setMargca(sc.next());
-                    System.out.println("Ingrese tamaño");
-                    pc.setTamaño(sc.nextDouble());
-                    System.out.println("Ingrese el precio");
-                    pc.setPrecio(sc.nextDouble());
-                    System.out.println("Seleccione el sistema operativo");
-                    System.out.println("1. Windows 7");
-                    System.out.println("2. Windows 10");
-                    System.out.println("3. Windows 11");
-                    int sis = sc.nextInt();
-                    switch (sis) {
-                        case 1:
-                            pc.setSistemaOperativo("Windows 7");
-                            break;
-                        case 2:
-                            pc.setSistemaOperativo("Windows 10");
-                            break;
-                        case 3:
-                            pc.setSistemaOperativo("Windows 11");
-                            break;
-                    }
-                    System.out.println("Seleccione procesador");
-                    System.out.println("1.AMD Ryzen");
-                    System.out.println("2. Intel Core i5");
-                    int pro = sc.nextInt();
-                    switch (pro) {
-                        case 1:
-                            pc.setProcesador("AMD Ryzen");
-                            break;
-                        case 2:
-                            pc.setProcesador("Intel Core i5");
-                            break;
-                    }
+                    Computadora pc = RegistroPC(String.valueOf(serialPC));
                     c.add(pc);
                     o.setSerial(serialPC);
                     System.out.println("Prestamo realizado");
                     break;
                 case 2:
-                    Tableta tab = new Tableta();
                     System.out.println("Ingrese el serial");
                     int serialTab = sc.nextInt();
-                    tab.setSerial(String.valueOf(serialTab));
-                    System.out.println("Ingrese la marca");
-                    tab.setMarca(sc.next());
-                    System.out.println("Ingrese tamaño");
-                    tab.setTamaño(sc.nextDouble());
-                    System.out.println("Ingrese el precio");
-                    tab.setPrecio(sc.nextDouble());
-                    System.out.println("Seleccione el almacenamiento");
-                    System.out.println("1. 256 GB");
-                    System.out.println("2. 512 GB");
-                    System.out.println("3. 1 TB");
-                    int alm = sc.nextInt();
-                    switch (alm) {
-                        case 1:
-                            tab.setAlmacenamiento("256 GB");
-                            break;
-                        case 2:
-                            tab.setAlmacenamiento("512 GB");
-                            break;
-                        case 3:
-                            tab.setAlmacenamiento("1 TB");
-                            break;
-                    }
-                    System.out.println("Ingrese el peso");
-                    tab.setPeso(sc.nextDouble());
+                    Tableta tab = RegistarTab(String.valueOf(serialTab));
                     t.add(tab);
                     o.setSerial(serialTab);
                     System.out.println("Prestamo realizado ");
@@ -341,12 +292,12 @@ public class metodos {
         return l;
     }
 
-    public void MostarDIS(LinkedList<EstudiDiseño> l,LinkedList<Computadora> c, LinkedList<Tableta> t){
-        if(l.isEmpty()){
+    public void MostarDIS(LinkedList<EstudiDiseño> l, LinkedList<Computadora> c, LinkedList<Tableta> t) {
+        if (l.isEmpty()) {
             System.out.println("No hay estudiantes registrados");
         }
 
-         for (EstudiDiseño o : l) {
+        for (EstudiDiseño o : l) {
             System.out.println("---------------------------------------------");
             System.out.println("\n ESTUDIANTE DISEÑO");
             System.out.println("Cedula: " + o.getCedula());
@@ -393,11 +344,102 @@ public class metodos {
                     }
                 }
             }
-
         }
         System.out.println("-------------------------------------------------");
-
     }
+
+    public LinkedList<EstudyInge> ModificarING(LinkedList<EstudyInge> l, String modificar) {
+        boolean encontrado = false;
+        for (EstudyInge o : l) {
+            if (o.getCedula().equals(modificar) || o.getSerial().equals(modificar)) {
+                encontrado = true;
+                System.out.println("\n Modificando estudiante: " + o.getNombre() + " " + o.getApellido());
+                System.out.println("Ingrese el nombre");
+                o.setNombre(sc.next());
+                System.out.println("Ingrese el apellido");
+                o.setApellido(sc.next());
+                System.out.println("Ingrese el telefono");
+                o.setTelefono(sc.next());
+                System.out.println("Ingrese el numero de semestre");
+                o.setNumeroSemestre(sc.nextInt());
+                System.out.println("Ingrese el promedio");
+                o.setPromedio(sc.nextDouble());
+                System.out.println("Datos actualizados con exito");
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("No se a encontrado estudiante con registro: " + modificar);
+        }
+        return l;
+    }
+
+    public LinkedList<EstudiDiseño> ModificarDIS(LinkedList<EstudiDiseño> l, String modificar) {
+        boolean encontrado = false;
+        for (EstudiDiseño o : l) {
+            if (o.getCedula().equals(modificar)) {
+                encontrado = true;
+                System.out.println("\n Modificando estudiante: " + o.getNombre() + " " + o.getApellido());
+                System.out.println("Ingrese el nombre");
+                o.setNombre(sc.next());
+                System.out.println("Ingrese el apellido");
+                o.setApellido(sc.next());
+                System.out.println("Ingrese el telefono");
+                o.setTelefono(sc.next());
+                System.out.println("Ingrese modalidad 1 presencial 2 virtual");
+                int mod = sc.nextInt();
+                switch (mod) {
+                    case 1:
+                        o.setModalidad("Presencial");
+                        break;
+                    case 2:
+                        o.setModalidad("Virtual");
+                        break;
+                }
+                System.out.println("ingrese la cantidad de asignaturas");
+                o.setCantidadAsignaturas(sc.nextInt());
+            }
+        }
+        if (!encontrado) {
+            System.out.println("No se a encontrado estudiante con registro: " + modificar);
+        }
+        return l;
+    }
+
+      public LinkedList<EstudiDiseño> ModificarDIS1(LinkedList<EstudiDiseño> l, int modificar) {
+        boolean encontrado = false;
+        for (EstudiDiseño o : l) {
+            if (o.getSerial() == modificar) {
+                encontrado = true;
+                System.out.println("\n Modificando estudiante: " + o.getNombre() + " " + o.getApellido());
+                System.out.println("Ingrese el nombre");
+                o.setNombre(sc.next());
+                System.out.println("Ingrese el apellido");
+                o.setApellido(sc.next());
+                System.out.println("Ingrese el telefono");
+                o.setTelefono(sc.next());
+                System.out.println("Ingrese modalidad 1 presencial 2 virtual");
+                int mod = sc.nextInt();
+                switch (mod) {
+                    case 1:
+                        o.setModalidad("Presencial");
+                        break;
+                    case 2:
+                        o.setModalidad("Virtual");
+                        break;
+                }
+                System.out.println("ingrese la cantidad de asignaturas");
+                o.setCantidadAsignaturas(sc.nextInt());
+            }
+        }
+        if (!encontrado) {
+            System.out.println("No se a encontrado estudiante con registro: " + modificar);
+        }
+        return l;
+    }
+
+    
+
 
 
 }
