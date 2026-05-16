@@ -39,10 +39,10 @@ public class MenuDiseño {
                     } 
                     break;
                 case 3:
-                    l = m.RegistarDis(l);
+                    l = m.DevolucionDIS(l, c, t);
                     break;
                 case 4:
-                    System.out.println("Sistema en mantenimiento");
+                     l = m.RegistarDis(l);
                     break;
                 case 5:
                     System.out.println("Rregresando a el menu principal..");
