@@ -28,19 +28,19 @@ public class MenuIngenieria {
                     l = m.ModificarING(l, modi);
                     break;
                 case 3:
-                    l = m.RegistarIng(l);
+                        l = m.DevolucionING(l, c, t);
                     break;
                 case 4:
-                    System.out.println("Sistema en mantenimiento");
+                    l = m.RegistarIng(l);
                     break;
                 case 5:
-                    System.out.println("Rregresando a el menu principal..");
+                    System.out.println("Rregresando a el menu principal...");
                     bandera = false;
                     break;
                 default:
                     System.out.println("Opcion no implementada");
             }
         }
-    }
+}
 
 }

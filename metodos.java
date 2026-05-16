@@ -406,7 +406,7 @@ public class metodos {
         return l;
     }
 
-      public LinkedList<EstudiDiseño> ModificarDIS1(LinkedList<EstudiDiseño> l, int modificar) {
+    public LinkedList<EstudiDiseño> ModificarDIS1(LinkedList<EstudiDiseño> l, int modificar) {
         boolean encontrado = false;
         for (EstudiDiseño o : l) {
             if (o.getSerial() == modificar) {
@@ -438,8 +438,105 @@ public class metodos {
         return l;
     }
 
-    
+    public LinkedList<EstudyInge> DevolucionING(LinkedList<EstudyInge> l, LinkedList<Computadora> c,
+            LinkedList<Tableta> t) {
+        System.out.println("Ingrese la cedula del estudiante");
+        String cedula = sc.next();
 
+        EstudyInge encontrado = null;
+        for (EstudyInge o : l) {
+            if (o.getCedula().equals(cedula)) {
+                encontrado = o;
+                break;
+            }
+        }
+        if (encontrado == null) {
+            System.out.println("El estudiante con cedula " + cedula + " No esta registrado");
+            return l;
+        }
 
+        String serial = encontrado.getSerial();
+        if (serial == null || serial.equals("")) {
+            System.out.println("El estudiante no tiene ningun equipo asignado");
+            return l;
+        }
+        boolean eliminarPC = c.removeIf(x -> x.getSerial().equals(serial));
+        boolean eliminarTAB = false;
+
+        if (!eliminarPC) {
+            eliminarTAB = t.removeIf(x -> x.getSerial().equals(serial));
+        }
+
+        if (eliminarPC || eliminarTAB) {
+            encontrado.setSerial("");
+            System.out.println("Devolucion exitosa el equipo con serial " + serial + " fue eliminado");
+        } else {
+            System.out.println("El serial no existe en el inventario");
+        }
+
+        System.out.println("Que desea hacer con el registro del estudiante: ");
+        System.out.println("1. Eliminar por completo a el estudiante");
+        System.out.println("2. Conservar a el estudiante en la base de datos para futuros registros");
+        int opt = sc.nextInt();
+        if (opt == 1) {
+            l.removeIf(x -> x.getCedula().equals(cedula));
+        } else {
+            System.out.println("El estudiante sigue en el sistema");
+        }
+        return l;
+    }
+
+    public LinkedList<EstudiDiseño> DevolucionDIS(LinkedList<EstudiDiseño> l, LinkedList<Computadora> c,
+            LinkedList<Tableta> t) {
+
+        System.out.println("Ingrese la cedula del estudiante");
+        String cedula = sc.next();
+
+        EstudiDiseño encontrado = null;
+        for (EstudiDiseño o : l) {
+            if (o.getCedula().equals(cedula)) {
+                encontrado = o;
+                break;
+            }
+        }
+        if (encontrado == null) {
+            System.out.println("El estudiante con cedula " + cedula + " No esta registrado");
+            return l;
+        }
+
+        int serial = encontrado.getSerial();
+
+        if(serial <=  0){
+            System.out.println("El estudiante no tienen ningun diapositivo asignado");
+            return l;
+        }
+
+        String serial1 = String.valueOf(serial);
+        boolean eliminarPC = c.removeIf(x -> x.getSerial().equals(serial1));
+        boolean eliminarTAB = false;
+
+        if(!eliminarPC){
+            eliminarTAB = t.removeIf(x -> x.getSerial().equals(serial1));
+        }
+
+        if (eliminarPC || eliminarTAB) {
+            encontrado.setSerial(0);
+            System.out.println("Devolucion exitosa el equipo con serial " + serial + " fue eliminado");
+        } else {
+            System.out.println("El serial no existe en el inventario");
+        }
+
+        System.out.println("Que desea hacer con el registro del estudiante: ");
+        System.out.println("1. Eliminar por completo a el estudiante");
+        System.out.println("2. Conservar a el estudiante en la base de datos para futuros registros");
+        int opt = sc.nextInt();
+
+        if (opt == 1) {
+            l.removeIf(x -> x.getCedula().equals(cedula));
+        } else {
+            System.out.println("El estudiante sigue en el sistema");
+        }
+        return l;
+    }
 
 }
