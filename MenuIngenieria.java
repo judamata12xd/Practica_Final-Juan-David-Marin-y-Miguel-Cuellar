@@ -31,14 +31,16 @@ public class MenuIngenieria {
                         l = m.DevolucionING(l, c, t);
                     break;
                 case 4:
-                    l = m.RegistarIng(l);
+                    System.out.println("Ingrese Cedula o serial del equipo que desea buscar");
+                    String criterio = sc.next();
+                    m.BuscarEquipo(l, c, t, criterio);
                     break;
                 case 5:
                     System.out.println("Rregresando a el menu principal...");
                     bandera = false;
                     break;
                 default:
-                    System.out.println("Opcion no implementada");
+                     l = m.RegistarIng(l);
             }
         }
 }

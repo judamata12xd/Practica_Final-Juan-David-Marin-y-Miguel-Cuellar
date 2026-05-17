@@ -42,14 +42,22 @@ public class MenuDiseño {
                     l = m.DevolucionDIS(l, c, t);
                     break;
                 case 4:
-                     l = m.RegistarDis(l);
+                    System.out.println("Como desea buscar 1. cedula 2.serial");
+                    int de = sc.nextInt();
+                    if(de== 1){
+                        String cedula = sc.next();
+                        m.BuscarEquipoDIS(l, c, t, cedula);
+                    } else {
+                        int serial = sc.nextInt();
+                        m.BuscarEquipoDIS1(l, c, t, serial);
+                    }
                     break;
                 case 5:
                     System.out.println("Rregresando a el menu principal..");
                     bandera = false;
                     break;
                 default:
-                    System.out.println("Opcion no implementada");;
+                     l = m.RegistarDis(l);
             }
         }
     }

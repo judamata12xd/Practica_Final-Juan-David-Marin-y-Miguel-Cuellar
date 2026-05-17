@@ -506,7 +506,7 @@ public class metodos {
 
         int serial = encontrado.getSerial();
 
-        if(serial <=  0){
+        if (serial <= 0) {
             System.out.println("El estudiante no tienen ningun diapositivo asignado");
             return l;
         }
@@ -515,7 +515,7 @@ public class metodos {
         boolean eliminarPC = c.removeIf(x -> x.getSerial().equals(serial1));
         boolean eliminarTAB = false;
 
-        if(!eliminarPC){
+        if (!eliminarPC) {
             eliminarTAB = t.removeIf(x -> x.getSerial().equals(serial1));
         }
 
@@ -537,6 +537,112 @@ public class metodos {
             System.out.println("El estudiante sigue en el sistema");
         }
         return l;
+    }
+
+    public void MostarEquipos(LinkedList<Computadora> c, LinkedList<Tableta> t, String serial) {
+        for (Computadora pc : c) {
+            if (pc.getSerial().equals(serial)) {
+                System.out.println("----------Computadora----------");
+                System.out.println("Marca: " + pc.getMarca());
+                System.out.println("Tamaño: " + pc.getTamaño());
+                System.out.println("Precio: " + pc.getPrecio());
+                System.out.println("Sistema operativo: " + pc.getSistemaOperativo());
+                System.out.println("Procedador: " + pc.getProcesador());
+                return;
+            }
+        }
+
+        for (Tableta tab : t) {
+            if (tab.getSerial().equals(serial)) {
+                System.out.println("Marca: " + tab.getMarca());
+                System.out.println("Tamaño: " + tab.getTamaño());
+                System.out.println("Precio: " + tab.getPrecio());
+                System.out.println("Almacenamiento: " + tab.getAlmacenamiento());
+                System.out.println("Peso: " + tab.getPeso());
+                return;
+            }
+        }
+    }
+
+    public boolean BuscarEquipo(LinkedList<EstudyInge> inge, LinkedList<Computadora> c,
+            LinkedList<Tableta> t, String criterio) {
+
+        for (EstudyInge e : inge) {
+            if (e.getCedula().contains(criterio)) {
+                if (e.getSerial() == null || e.getSerial().equals("")) {
+                    System.out.println("El estudiante: " + e.getNombre() + " " + e.getApellido()
+                            + " No tiene diapositivo asisgnado");
+                    return false;
+                } else {
+                    System.out.println("Prestamo encontrado");
+                    System.out.println("El prestamo le pertene a el estudiante: " + e.getNombre() + " " +
+                            e.getApellido() + " Con cedula: " + e.getCedula());
+                    System.out.println("Serial equipo: " + e.getSerial());
+                    MostarEquipos(c, t, e.getSerial());
+                    return true;
+                }
+            }
+
+            if (e.getSerial().equals(criterio) && e.getSerial() != null) {
+                System.out.println("Prestamo encontrado");
+                System.out.println("El prestamo le pertene a el estudiante: " + e.getNombre() + " " +
+                        e.getApellido() + " Con cedula: " + e.getCedula());
+                System.out.println("Serial equipo: " + e.getSerial());
+                MostarEquipos(c, t, e.getSerial());
+                return true;
+            }
+        }
+
+        System.out.println("La cedula o serial: " + criterio + " NO existe");
+        return false;
+    }
+
+    public boolean BuscarEquipoDIS(LinkedList<EstudiDiseño> dis, LinkedList<Computadora> c,
+            LinkedList<Tableta> t, String cedula) {
+
+        for (EstudiDiseño d : dis) {
+            if (d.getCedula().equals(cedula)) {
+                if (d.getSerial() <= 0) {
+                    System.out.println("El estudiante: " + d.getNombre() + " " + d.getApellido()
+                            + " No tiene diapositivo asisgnado");
+                    return false;
+                } else {
+                    System.out.println("Prestamo encontrado");
+                    System.out.println("El prestamo le pertene a el estudiante: " + d.getNombre() + " " +
+                            d.getApellido() + " Con cedula: " + d.getCedula());
+                    System.out.println("Serial equipo: " + d.getSerial());
+                    MostarEquipos(c, t, String.valueOf(d.getSerial()));
+                    return true;
+                }
+            }
+
+        }
+        System.out.println("La cedula : " + cedula + " NO existe");
+        return false;
+    }
+
+    public boolean BuscarEquipoDIS1(LinkedList<EstudiDiseño> dis, LinkedList<Computadora> c,
+            LinkedList<Tableta> t, int serial) {
+
+        if (serial <= 0) {
+            System.out.println("El serial ingresado no es valido");
+            return false;
+        }
+
+        for (EstudiDiseño d : dis) {
+            if (d.getSerial() == serial) {
+                System.out.println("Prestamo encontrado");
+                System.out.println("El prestamo le pertene a el estudiante: " + d.getNombre() + " " +
+                        d.getApellido() + " Con cedula: " + d.getCedula());
+                System.out.println("Serial equipo: " + d.getSerial());
+                MostarEquipos(c, t, String.valueOf(d.getSerial()));
+                return true;
+            }
+        }
+
+        System.out.println("El serial : " + serial + " NO existe");
+
+        return false;
     }
 
 }
