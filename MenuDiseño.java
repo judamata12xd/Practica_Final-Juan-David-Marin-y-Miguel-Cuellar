@@ -12,7 +12,7 @@ public class MenuDiseño {
           while (bandera) {
             System.out.println("Bienvenido a el menu de diseño");
             System.out.println("Que desea realizar");
-            System.out.println("1. Registrar Prestamo");
+            System.out.println("1. Registrar Prestamo y estudiante ");
             System.out.println("2. Modificar prestamo");
             System.out.println("3. Devolucion de equipo");
             System.out.println("4. Buscar equipo");
@@ -21,7 +21,7 @@ public class MenuDiseño {
 
             switch (opt) {
                 case 1:
-                    l = m.prestamoDis(l, c, t);
+                    l = m.RegistarDis(l, c, t);
                     break;
                 case 2:
                     System.out.println("¿Como desea buscar a el estudiante?");
@@ -57,7 +57,7 @@ public class MenuDiseño {
                     bandera = false;
                     break;
                 default:
-                     l = m.RegistarDis(l);
+                     
             }
         }
     }

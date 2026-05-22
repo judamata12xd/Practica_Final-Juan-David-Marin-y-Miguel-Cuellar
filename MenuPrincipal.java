@@ -11,10 +11,12 @@ public class MenuPrincipal {
         MenuIngenieria mening = new MenuIngenieria();
         MenuDiseño mendis = new MenuDiseño();
         metodos m = new metodos();
+        Importar ImpoIng = new Importar();
         LinkedList<EstudyInge> inge = new LinkedList<>();
         LinkedList<EstudiDiseño> dis = new LinkedList<>();
         LinkedList<Computadora> c = new LinkedList<>();
         LinkedList<Tableta> t = new LinkedList<>();
+        inge = ImpoIng.ImportarArchivoING(c);
 
         while (seguir) {
             System.out.println("Bienvenido a el sistema de prestamos ITM :D");
@@ -38,6 +40,8 @@ public class MenuPrincipal {
                     break;
                 case 4:
                     seguir = false;
+                    Exportar Exing = new Exportar();
+                    Exing.exportarArchivoING(inge);
                     System.out.println("Gracias por utilizar el sistema buelva pronto");
                     break;
                 default:

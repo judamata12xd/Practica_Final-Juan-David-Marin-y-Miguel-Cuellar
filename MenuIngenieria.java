@@ -20,7 +20,7 @@ public class MenuIngenieria {
 
             switch (opt) {
                 case 1:
-                    l = m.PrestamoING(t, c, l);
+                    l = m.RegistarIng(l, t, c);
                     break;
                 case 2:
                     System.out.println("Ingrese la cedula o el serial del estudiante que quiera moficar");
@@ -40,7 +40,7 @@ public class MenuIngenieria {
                     bandera = false;
                     break;
                 default:
-                     l = m.RegistarIng(l);
+                    System.out.println("No implementada");
             }
         }
 }
