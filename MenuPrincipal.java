@@ -11,10 +11,13 @@ public class MenuPrincipal {
         MenuIngenieria mening = new MenuIngenieria();
         MenuDiseño mendis = new MenuDiseño();
         metodos m = new metodos();
+        Validaciones v  = new Validaciones();
+        Importar ImpoIng = new Importar();
         LinkedList<EstudyInge> inge = new LinkedList<>();
         LinkedList<EstudiDiseño> dis = new LinkedList<>();
         LinkedList<Computadora> c = new LinkedList<>();
         LinkedList<Tableta> t = new LinkedList<>();
+        inge = ImpoIng.ImportarArchivoING(c);
 
         while (seguir) {
             System.out.println("Bienvenido a el sistema de prestamos ITM :D");
@@ -22,15 +25,14 @@ public class MenuPrincipal {
             System.out.println("2. Menu estudiantes diseño");
             System.out.println("3. Inventario total");
             System.out.println("4. salir");
-
-            int opt = sc.nextInt();
-
+            int opt = v.ValidarEntero(sc);
+            opt = v.ValidarRango(1, 4, opt, sc);
             switch (opt) {
                 case 1:
-                    mening.MenuIng(inge,c,t);
+                    mening.MenuIng(inge,c,t,dis);
                     break;
                 case 2:
-                    mendis.Menudis(dis,c,t);
+                    mendis.Menudis(dis,c,t,inge);
                     break;
                 case 3:
                     m.MostarIng(inge, c, t);
@@ -38,6 +40,8 @@ public class MenuPrincipal {
                     break;
                 case 4:
                     seguir = false;
+                    Exportar Exing = new Exportar();
+                    Exing.exportarArchivoING(inge);
                     System.out.println("Gracias por utilizar el sistema buelva pronto");
                     break;
                 default:
