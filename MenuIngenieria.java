@@ -3,8 +3,10 @@ import java.util.Scanner;
 
 public class MenuIngenieria {
 
-    public void MenuIng(LinkedList<EstudyInge> l, LinkedList<Computadora> c, LinkedList<Tableta> t) {
+    public void MenuIng(LinkedList<EstudyInge> l, LinkedList<Computadora> c, LinkedList<Tableta> t,
+        LinkedList<EstudiDiseño> dis) {
         metodos m = new metodos();
+        Validaciones v = new Validaciones();
         Scanner sc = new Scanner(System.in);
         boolean bandera = true;
 
@@ -16,11 +18,12 @@ public class MenuIngenieria {
             System.out.println("3. Devolucion de equipo");
             System.out.println("4. Buscar equipo");
             System.out.println("5. Volver a el menu principal");
-            int opt = sc.nextInt();
+            int opt = v.ValidarEntero(sc);
+            opt = v.ValidarRango(1, 5, opt, sc);
 
             switch (opt) {
                 case 1:
-                    l = m.RegistarIng(l, t, c);
+                    l = m.RegistarIng(l, t, c, dis);
                     break;
                 case 2:
                     System.out.println("Ingrese la cedula o el serial del estudiante que quiera moficar");

@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 public class MenuDiseño {
 
-    public void Menudis(LinkedList<EstudiDiseño> l, LinkedList<Computadora> c,LinkedList<Tableta> t){
+    public void Menudis(LinkedList<EstudiDiseño> l, LinkedList<Computadora> c,LinkedList<Tableta> t,
+        LinkedList<EstudyInge> inge){
         Scanner sc = new Scanner(System.in);
         metodos m = new metodos();
+        Validaciones v = new Validaciones();
         boolean bandera = true;
 
           while (bandera) {
@@ -17,24 +19,26 @@ public class MenuDiseño {
             System.out.println("3. Devolucion de equipo");
             System.out.println("4. Buscar equipo");
             System.out.println("5. Volver a el menu principal");
-            int opt = sc.nextInt();
+            int opt = v.ValidarEntero(sc);
+            opt = v.ValidarRango(1, 5, opt, sc);
 
             switch (opt) {
                 case 1:
-                    l = m.RegistarDis(l, c, t);
+                    l = m.RegistarDis(l, c, t,inge);
                     break;
                 case 2:
                     System.out.println("¿Como desea buscar a el estudiante?");
                     System.out.println("1. cedula");
                     System.out.println("2. Serial");
-                    int bus = sc.nextInt();
+                    int bus = v.ValidarEntero(sc);
+                    bus = v.ValidarRango(1, 2, bus, sc);
                     if(bus == 1){
                         System.out.println("Ingrese la cedula");
                         String cedu = sc.next();
                         l = m.ModificarDIS(l, cedu);
                     } else {
                         System.out.println("Ingrese el serial");
-                        int seri = sc.nextInt();
+                        int seri = v.ValidarEntero(sc);
                         l = m.ModificarDIS1(l, seri);
                     } 
                     break;
@@ -43,12 +47,13 @@ public class MenuDiseño {
                     break;
                 case 4:
                     System.out.println("Como desea buscar 1. cedula 2.serial");
-                    int de = sc.nextInt();
+                    int de = v.ValidarEntero(sc);
+                    de = v.ValidarRango(1, 2, de, sc);
                     if(de== 1){
                         String cedula = sc.next();
                         m.BuscarEquipoDIS(l, c, t, cedula);
                     } else {
-                        int serial = sc.nextInt();
+                        int serial = v.ValidarEntero(sc);
                         m.BuscarEquipoDIS1(l, c, t, serial);
                     }
                     break;
