@@ -21,26 +21,28 @@ public class metodos {
             o.setApellido(v.TextoValido(sc));
             o.setTelefono(v.ValidarTelefono(sc));
             System.out.println("Ingrese el numero de semestre");
-            o.setNumeroSemestre(v.ValidarEntero(sc));
+            int semestre = v.ValidarEntero(sc);
+            o.setNumeroSemestre(v.ValidarSemestre(1, 15, semestre, sc));
+            sc.nextLine();
             System.out.println("Ingrese el promedio");
-            o.setPromedio(v.ValidarDecimal(sc));
+            double promedio = v.ValidarDecimal(sc);
+            o.setPromedio(v.ValidarRangoDeci(1, 5, promedio, sc));
             System.out.println("Que desea prestar?");
             System.out.println("1. Computador");
             System.out.println("2. Tablet");
             int pres = v.ValidarEntero(sc);
             pres = v.ValidarRango(1, 2, pres, sc);
+            sc.nextLine();
             switch (pres) {
                 case 1:
-                    System.out.println("Ingrese el serial");
-                    String serialPC = sc.next();
+                    String serialPC = v.ValidarSerial(sc, l, dis);
                     Computadora pc = RegistroPC(serialPC);
                     c.add(pc);
                     o.setSerial(pc.getSerial());
                     System.out.println("Prestamo realizado");
                     break;
                 case 2:
-                    System.out.println("Ingrese el serial");
-                    String serialTAB = sc.next();
+                    String serialTAB = v.ValidarSerial(sc, l, dis);
                     Tableta tab = RegistarTab(serialTAB);
                     t.add(tab);
                     o.setSerial(tab.getSerial());
@@ -51,6 +53,7 @@ public class metodos {
             System.out.println("Desea seguir agregando estudiantes 1 si 2 no");
             int opt = v.ValidarEntero(sc);
             opt = v.ValidarRango(1, 2, opt, sc);
+            sc.nextLine();
             if (opt == 2) {
                 pedir = false;
             }
@@ -82,27 +85,27 @@ public class metodos {
                     break;
             }
             System.out.println("ingrese la cantidad de asignaturas");
-            o.setCantidadAsignaturas(v.ValidarEntero(sc));
+            int asig = v.ValidarEntero(sc);
+            o.setCantidadAsignaturas(v.ValidarRango(1, 10, asig, sc));
             System.out.println("Que desea prestar?");
             System.out.println("1. Computador");
             System.out.println("2. Tablet");
             int pres = v.ValidarEntero(sc);
             pres = v.ValidarRango(1, 2, pres, sc);
+            sc.nextLine();
             switch (pres) {
                 case 1:
-                    System.out.println("Ingrese el serial");
-                    int serialPC = v.ValidarEntero(sc);
-                    Computadora pc = RegistroPC(String.valueOf(serialPC));
+                    String serialPC = v.ValidarSerial(sc, inge, l);
+                    Computadora pc = RegistroPC(serialPC);
                     c.add(pc);
-                    o.setSerial(serialPC);
+                    o.setSerial(Integer.parseInt(serialPC));
                     System.out.println("Prestamo realizado");
                     break;
                 case 2:
-                    System.out.println("Ingrese el serial");
-                    int serialTab = v.ValidarEntero(sc);
-                    Tableta tab = RegistarTab(String.valueOf(serialTab));
+                    String serialTab = v.ValidarSerial(sc, inge, l);
+                    Tableta tab = RegistarTab(serialTab);
                     t.add(tab);
-                    o.setSerial(serialTab);
+                    o.setSerial(Integer.parseInt(serialTab));
                     System.out.println("Prestamo realizado ");
                     break;
             }
@@ -110,6 +113,7 @@ public class metodos {
             System.out.println("Desea seguir agregando estudiantes 1 si 2 no");
             int opt = v.ValidarEntero(sc);
             opt = v.ValidarRango(1, 2, opt, sc);
+            sc.nextLine();
             if (opt == 2) {
                 pedir = false;
             }
@@ -121,11 +125,14 @@ public class metodos {
         Computadora pc = new Computadora();
         pc.setSerial(Serial);
         System.out.println("Ingrese la marca");
-        pc.setMargca(sc.next());
+        pc.setMargca(v.Marca(sc));
+        sc.nextLine();
         System.out.println("Ingrese tamaño");
-        pc.setTamaño(v.ValidarDecimal(sc));
+        double tama = v.ValidarDecimal(sc);
+        pc.setTamaño(v.ValidarRangoDeci(7, 35, tama, sc));
         System.out.println("Ingrese el precio");
-        pc.setPrecio(v.ValidarDecimal(sc));
+        double precio = v.ValidarDecimal(sc);
+        pc.setPrecio(v.ValidarRangoDeci(800000, 20000000, precio, sc));
         System.out.println("Seleccione el sistema operativo");
         System.out.println("1. Windows 7");
         System.out.println("2. Windows 10");
@@ -163,11 +170,14 @@ public class metodos {
         Tableta tab = new Tableta();
         tab.setSerial(serial);
         System.out.println("Ingrese la marca");
-        tab.setMarca(sc.next());
+        tab.setMarca(v.Marca(sc));
+        sc.nextLine();
         System.out.println("Ingrese tamaño");
-        tab.setTamaño(v.ValidarDecimal(sc));
+        double tama = v.ValidarDecimal(sc);
+        tab.setTamaño(v.ValidarRangoDeci(7, 14, tama, sc));
         System.out.println("Ingrese el precio");
-        tab.setPrecio(v.ValidarDecimal(sc));
+        double precio = v.ValidarDecimal(sc);
+        tab.setPrecio(v.ValidarRangoDeci(300000, 8000000, precio, sc));
         System.out.println("Seleccione el almacenamiento");
         System.out.println("1. 256 GB");
         System.out.println("2. 512 GB");
@@ -185,8 +195,10 @@ public class metodos {
                 tab.setAlmacenamiento("1 TB");
                 break;
         }
+        sc.nextLine();
         System.out.println("Ingrese el peso");
-        tab.setPeso(v.ValidarDecimal(sc));
+        double peso = v.ValidarDecimal(sc);
+        tab.setPeso(v.ValidarRangoDeci(200, 2000, peso, sc));
         return tab;
     }
 
@@ -309,11 +321,14 @@ public class metodos {
                 System.out.println("Ingrese el apellido");
                 o.setApellido(v.TextoValido(sc));
                 System.out.println("Ingrese el telefono");
-                o.setTelefono(sc.next());
+                o.setTelefono(v.ValidarTelefono(sc));
                 System.out.println("Ingrese el numero de semestre");
-                o.setNumeroSemestre(v.ValidarEntero(sc));
+                int semes = v.ValidarEntero(sc);
+                o.setNumeroSemestre(v.ValidarRango(1, 14, semes, sc));
+                sc.nextLine();
                 System.out.println("Ingrese el promedio");
-                o.setPromedio(v.ValidarDecimal(sc));
+                double prome = v.ValidarDecimal(sc);
+                o.setPromedio(v.ValidarRangoDeci(1, 5, prome, sc));
                 System.out.println("Datos actualizados con exito");
                 break;
             }
@@ -335,7 +350,7 @@ public class metodos {
                 System.out.println("Ingrese el apellido");
                 o.setApellido(v.TextoValido(sc));
                 System.out.println("Ingrese el telefono");
-                o.setTelefono(sc.next());
+                o.setTelefono(v.ValidarTelefono(sc));
                 System.out.println("Ingrese modalidad 1 presencial 2 virtual");
                 int mod = v.ValidarEntero(sc);
                 mod = v.ValidarRango(1, 2, mod, sc);
@@ -348,7 +363,8 @@ public class metodos {
                         break;
                 }
                 System.out.println("ingrese la cantidad de asignaturas");
-                o.setCantidadAsignaturas(v.ValidarEntero(sc));
+                int asig = v.ValidarEntero(sc);
+                o.setCantidadAsignaturas(v.ValidarRango(1, 14, asig, sc));
             }
         }
         if (!encontrado) {
@@ -368,7 +384,7 @@ public class metodos {
                 System.out.println("Ingrese el apellido");
                 o.setApellido(v.TextoValido(sc));
                 System.out.println("Ingrese el telefono");
-                o.setTelefono(sc.next());
+                o.setTelefono(v.ValidarTelefono(sc));
                 System.out.println("Ingrese modalidad 1 presencial 2 virtual");
                 int mod = v.ValidarEntero(sc);
                 mod = v.ValidarRango(1, 2, mod, sc);
@@ -381,7 +397,8 @@ public class metodos {
                         break;
                 }
                 System.out.println("ingrese la cantidad de asignaturas");
-                o.setCantidadAsignaturas(v.ValidarEntero(sc));
+                int asig = v.ValidarEntero(sc);
+                o.setCantidadAsignaturas(v.ValidarRango(1, 14, asig, sc));
             }
         }
         if (!encontrado) {

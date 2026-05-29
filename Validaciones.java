@@ -11,7 +11,7 @@ public class Validaciones {
         return sc.nextInt();
     }
 
-    public Double ValidarDecimal(Scanner sc) {
+    public Double ValidarDecimal1(Scanner sc) {
         while (!sc.hasNextDouble()) {
             System.out.println("Por favor digite un numero");
             sc.nextLine();
@@ -19,11 +19,42 @@ public class Validaciones {
         return sc.nextDouble();
     }
 
+    public double ValidarDecimal(Scanner sc) {
+
+        String decimal = sc.nextLine().trim();
+
+        if (decimal.matches("^[0-9]+([.,][0-9]+)?$")) {
+            decimal = decimal.replace(",", ".");
+            return Double.parseDouble(decimal);
+        } else {
+            System.out.println("Ingrese un numero decimal valido");
+            return ValidarDecimal(sc);
+        }
+    }
+
     public int ValidarRango(int n1, int n2, int numero, Scanner sc) {
         Validaciones m = new Validaciones();
         while (numero < n1 || numero > n2) {
-            System.out.println("Por favor ingrese un rango de :" + n1 + " hasta " + n2);
+            System.out.println("Por favor ingrese un rango de : " + n1 + " hasta " + n2);
             numero = m.ValidarEntero(sc);
+        }
+        return numero;
+    }
+
+    public int ValidarSemestre(int n1, int n2, int numero, Scanner sc) {
+        Validaciones m = new Validaciones();
+        while (numero < n1 || numero > n2) {
+            System.out.println("Por favor ingrese un semestre valido : " + n1 + " hasta " + n2);
+            numero = m.ValidarEntero(sc);
+        }
+        return numero;
+    }
+
+    public double ValidarRangoDeci(int n1, int n2, double numero, Scanner sc) {
+        Validaciones m = new Validaciones();
+        while (numero < n1 || numero > n2) {
+            System.out.println("Ingrese un rango entre : " + n1 + " hasta " + n2);
+            numero = m.ValidarDecimal(sc);
         }
         return numero;
     }
@@ -90,13 +121,74 @@ public class Validaciones {
         }
         if (!tel.matches("[0-9]+")) {
             System.out.println("El telefono solo debe contener numeros, sin espacios.");
-            return ValidarTelefono(sc); 
+            return ValidarTelefono(sc);
         }
         if (tel.length() != 10) {
             System.out.println("Un telefono valido debe tener exactamente 10 digitos.");
-            return ValidarTelefono(sc); 
+            return ValidarTelefono(sc);
         }
         return tel;
+    }
+
+    public String ValidarSerial(Scanner sc, LinkedList<EstudyInge> inge, LinkedList<EstudiDiseño> dis) {
+        System.out.println("Ingrese el serial");
+        String serial = sc.nextLine().trim().toUpperCase();
+
+        if (serial.isEmpty()) {
+            System.out.println("El serial no puede estar vacio.");
+            return ValidarSerial(sc, inge, dis);
+        }
+        if (!serial.matches("^[0-9]+$")) {
+            System.out.println("El serial solo debe contener numeros");
+            return ValidarSerial(sc, inge, dis);
+        }
+        if (serial.length() < 5 || serial.length() > 15) {
+            System.out.println("El serial debe tener entre 5 y 15 caracteres.");
+            return ValidarSerial(sc, inge, dis);
+        }
+        boolean serialRepe = false;
+
+        for (EstudyInge ing : inge) {
+            if (ing.getSerial().toUpperCase().equals(serial)) {
+                serialRepe = true;
+                break;
+            }
+        }
+        for (EstudiDiseño dise : dis) {
+            String serialDise = dise.getSerial() + "";
+            if (serialDise.equals(serial)) {
+                serialRepe = true;
+                break;
+            }
+        }
+        if (serialRepe) {
+            System.out.println("Este serial ya se encuentra registrado en el sistema.");
+            return ValidarSerial(sc, inge, dis);
+        }
+        return serial;
+    }
+
+    public String Marca(Scanner sc) {
+        System.out.println("Marcas Disponibles en el inventario");
+        System.out.println("1. Lenovo");
+        System.out.println("2. HP");
+        System.out.println("3. Asus");
+        System.out.println("4. Samsung");
+
+        int opt = ValidarEntero(sc);
+        opt = ValidarRango(1, 4, opt, sc);
+
+        switch (opt) {
+            case 1:
+                return "Lenovo";
+            case 2:
+                return "HP";
+            case 3:
+                return "Asus";
+            case 4:
+                return "Samsung";
+        }
+        return "otra";
     }
 
 }
