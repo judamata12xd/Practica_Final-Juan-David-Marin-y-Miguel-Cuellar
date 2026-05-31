@@ -13,7 +13,7 @@ public class MenuDiseño {
 
           while (bandera) {
             System.out.println("Bienvenido a el menu de diseño");
-            System.out.println("Que desea realizar");
+            System.out.println("¿Que desea realizar?");
             System.out.println("1. Registrar Prestamo y estudiante ");
             System.out.println("2. Modificar prestamo");
             System.out.println("3. Devolucion de equipo");

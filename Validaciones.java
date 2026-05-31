@@ -54,19 +54,18 @@ public class Validaciones {
     }
 
     public String TextoValido(Scanner sc) {
-        String texto = sc.nextLine().trim();
         int limite = 30;
-        if (texto.isEmpty()) {
-            System.out.println("El campo no puede estar vacio. Intente de nuevo.");
-            return TextoValido(sc);
-        } else if (texto.length() > limite || texto.length() < 3) {
-            System.out.println("El texto es muy largo Maximo " + limite + " caracteres. Intente de nuevo.");
-            return TextoValido(sc);
-        } else if (!texto.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
-            System.out.println("Solo se permiten letras (sin caracteres especiales o numeros). Intente de nuevo.");
-            return TextoValido(sc);
-        } else {
-            return texto;
+        while (true) {
+            String texto = sc.nextLine().trim();
+            if (texto.isEmpty()) {
+                System.out.println("El campo no puede estar vacio. Intente de nuevo.");
+            } else if (texto.length() > limite || texto.length() < 3) {
+                System.out.println("El texto es muy largo Maximo " + limite + " caracteres. Intente de nuevo.");
+            } else if (!texto.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+                System.out.println("Solo se permiten letras (sin caracteres especiales o numeros). Intente de nuevo.");
+            } else {
+                return texto;
+            }
         }
     }
 
@@ -137,7 +136,7 @@ public class Validaciones {
             if (serial.length() < 5 || serial.length() > 15) {
                 System.out.println("El serial debe tener entre 5 y 15 caracteres.");
                 continue;
-            }            
+            }
             boolean serialRepe = false;
             for (EstudyInge ing : inge) {
                 String serialIng = ing.getSerial();
