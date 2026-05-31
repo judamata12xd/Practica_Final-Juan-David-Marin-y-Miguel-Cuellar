@@ -27,7 +27,7 @@ public class MenuIngenieria {
                     break;
                 case 2:
                     System.out.println("Ingrese la cedula o el serial del estudiante que quiera moficar");
-                    String modi = sc.next();
+                    String modi = v.ValidarBusqueda(sc);
                     l = m.ModificarING(l, modi);
                     break;
                 case 3:
@@ -35,7 +35,7 @@ public class MenuIngenieria {
                     break;
                 case 4:
                     System.out.println("Ingrese Cedula o serial del equipo que desea buscar");
-                    String criterio = sc.next();
+                    String criterio = v.ValidarBusqueda(sc);
                     m.BuscarEquipo(l, c, t, criterio);
                     break;
                 case 5:

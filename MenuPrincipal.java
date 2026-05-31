@@ -12,15 +12,17 @@ public class MenuPrincipal {
         MenuDiseño mendis = new MenuDiseño();
         metodos m = new metodos();
         Validaciones v  = new Validaciones();
-        Importar ImpoIng = new Importar();
+        ImportarIng ImpoIng = new ImportarIng();
+        ImportarDis Impodis = new ImportarDis();
         LinkedList<EstudyInge> inge = new LinkedList<>();
         LinkedList<EstudiDiseño> dis = new LinkedList<>();
         LinkedList<Computadora> c = new LinkedList<>();
         LinkedList<Tableta> t = new LinkedList<>();
-        inge = ImpoIng.ImportarArchivoING(c);
+        inge = ImpoIng.ImportarArchivoING(c, t);
+        dis = Impodis.ImportarArchivoDIS(c, t);
 
         while (seguir) {
-            System.out.println("Bienvenido a el sistema de prestamos ITM :D");
+            System.out.println("-------------Bienvenido a el sistema de prestamos ITM :D------------");
             System.out.println("1. Menu estudiantes ingenieria");
             System.out.println("2. Menu estudiantes diseño");
             System.out.println("3. Inventario total");
@@ -40,8 +42,10 @@ public class MenuPrincipal {
                     break;
                 case 4:
                     seguir = false;
-                    Exportar Exing = new Exportar();
-                    Exing.exportarArchivoING(inge);
+                    ExportarIng Exing = new ExportarIng();
+                    Exing.exportarArchivoING(inge, c, t);
+                    ExportarDis Exdis = new ExportarDis();
+                    Exdis.exportarArchivoDIS(dis, c, t);
                     System.out.println("Gracias por utilizar el sistema buelva pronto");
                     break;
                 default:

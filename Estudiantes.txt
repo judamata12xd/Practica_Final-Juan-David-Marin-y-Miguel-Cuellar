@@ -1,8 +1,0 @@
-Nombre: david
-Apellido: taborda
-Cedula: 1020111233
-Telefono: 3147147223
-Semestre: 3
-Promedio: 4.0
-Serial: 1234
------------------------------------------------------- 

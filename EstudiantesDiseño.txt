@@ -1,0 +1,28 @@
+Nombre: Eren
+Apellido: yaiger
+Cedula: 70662306
+Telefono: 3147147223
+Modalidad: Presencial
+Asignaturas: 5
+Serial: 12345
+TipoEquipo: PC
+Marca: HP
+Tamano: 12.0
+Precio: 1200000.0
+SO: Windows 10
+Procesador: AMD Ryzen
+------------------------------------------------------
+Nombre: mikasa
+Apellido: akerman
+Cedula: 12345678
+Telefono: 3148753669
+Modalidad: Virtual
+Asignaturas: 5
+Serial: 67890
+TipoEquipo: Tableta
+Marca: HP
+Tamano: 12.0
+Precio: 1200000.0
+Almacenamiento: 512 GB
+Peso: 0.4
+------------------------------------------------------

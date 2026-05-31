@@ -34,7 +34,7 @@ public class MenuDiseño {
                     bus = v.ValidarRango(1, 2, bus, sc);
                     if(bus == 1){
                         System.out.println("Ingrese la cedula");
-                        String cedu = sc.next();
+                        String cedu = v.ValidarBusqueda(sc);
                         l = m.ModificarDIS(l, cedu);
                     } else {
                         System.out.println("Ingrese el serial");
@@ -50,9 +50,11 @@ public class MenuDiseño {
                     int de = v.ValidarEntero(sc);
                     de = v.ValidarRango(1, 2, de, sc);
                     if(de== 1){
-                        String cedula = sc.next();
+                        System.out.println("Ingrese la cedula");
+                        String cedula = v.ValidarBusqueda(sc);
                         m.BuscarEquipoDIS(l, c, t, cedula);
                     } else {
+                        System.out.println("Ingrese el serial");
                         int serial = v.ValidarEntero(sc);
                         m.BuscarEquipoDIS1(l, c, t, serial);
                     }
