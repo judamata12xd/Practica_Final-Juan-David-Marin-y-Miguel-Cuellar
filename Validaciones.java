@@ -4,19 +4,15 @@ import java.util.Scanner;
 public class Validaciones {
 
     public int ValidarEntero(Scanner sc) {
-        while (!sc.hasNextInt()) {
-            System.out.println("Por favor Ingrese un digito Numérico");
-            sc.nextLine();
+        while (true) {
+            try {
+                String entrada = sc.nextLine().trim();
+                int numero = Integer.parseInt(entrada);
+                return numero;
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor ingrese un digito numerico valido.");
+            }
         }
-        return sc.nextInt();
-    }
-
-    public Double ValidarDecimal1(Scanner sc) {
-        while (!sc.hasNextDouble()) {
-            System.out.println("Por favor digite un numero");
-            sc.nextLine();
-        }
-        return sc.nextDouble();
     }
 
     public double ValidarDecimal(Scanner sc) {
@@ -33,28 +29,26 @@ public class Validaciones {
     }
 
     public int ValidarRango(int n1, int n2, int numero, Scanner sc) {
-        Validaciones m = new Validaciones();
         while (numero < n1 || numero > n2) {
             System.out.println("Por favor ingrese un rango de : " + n1 + " hasta " + n2);
-            numero = m.ValidarEntero(sc);
+            numero = ValidarEntero(sc);
         }
         return numero;
     }
 
     public int ValidarSemestre(int n1, int n2, int numero, Scanner sc) {
-        Validaciones m = new Validaciones();
         while (numero < n1 || numero > n2) {
             System.out.println("Por favor ingrese un semestre valido : " + n1 + " hasta " + n2);
-            numero = m.ValidarEntero(sc);
+            numero = ValidarEntero(sc);
         }
         return numero;
     }
 
-    public double ValidarRangoDeci(int n1, int n2, double numero, Scanner sc) {
-        Validaciones m = new Validaciones();
+    public double ValidarRangoDeci(double n1, double n2, double numero, Scanner sc) {
+
         while (numero < n1 || numero > n2) {
             System.out.println("Ingrese un rango entre : " + n1 + " hasta " + n2);
-            numero = m.ValidarDecimal(sc);
+            numero = ValidarDecimal(sc);
         }
         return numero;
     }
@@ -65,7 +59,7 @@ public class Validaciones {
         if (texto.isEmpty()) {
             System.out.println("El campo no puede estar vacio. Intente de nuevo.");
             return TextoValido(sc);
-        } else if (texto.length() > limite) {
+        } else if (texto.length() > limite || texto.length() < 3) {
             System.out.println("El texto es muy largo Maximo " + limite + " caracteres. Intente de nuevo.");
             return TextoValido(sc);
         } else if (!texto.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
@@ -77,95 +71,96 @@ public class Validaciones {
     }
 
     public String ValidarCedula(Scanner sc, LinkedList<EstudyInge> inge, LinkedList<EstudiDiseño> dis) {
-        System.out.println("Ingrese la cedula");
-        String cedula = sc.nextLine().trim();
-
-        if (!cedula.matches("[0-9]+")) {
-            System.out.println("La cedula solo debe contener numeros y no puede tener espacios en blanco.");
-            return ValidarCedula(sc, inge, dis);
-        }
-
-        if (cedula.length() < 7 || cedula.length() > 11) {
-            System.out.println("La cedula debe tener entre 7 y 11 digitos.");
-            return ValidarCedula(sc, inge, dis);
-        }
-
-        boolean cedulaRepe = false;
-
-        for (EstudyInge ing : inge) {
-            if (ing.getCedula().equals(cedula)) {
-                cedulaRepe = true;
-                break;
+        while (true) {
+            System.out.println("Ingrese la cedula");
+            String cedula = sc.nextLine().trim();
+            if (!cedula.matches("[0-9]+")) {
+                System.out.println("La cedula solo debe contener numeros y no puede tener espacios en blanco.");
+                continue;
+            }
+            if (cedula.length() < 7 || cedula.length() > 11) {
+                System.out.println("La cedula debe tener entre 7 y 11 digitos.");
+                continue;
+            }
+            boolean cedulaRepe = false;
+            for (EstudyInge ing : inge) {
+                if (ing.getCedula().equals(cedula)) {
+                    cedulaRepe = true;
+                    break;
+                }
+            }
+            if (!cedulaRepe) {
+                for (EstudiDiseño Dis : dis) {
+                    if (Dis.getCedula().equals(cedula)) {
+                        cedulaRepe = true;
+                        break;
+                    }
+                }
+            }
+            if (cedulaRepe) {
+                System.out.println("Esta cedula ya esta registrada en el sistema. Intente de nuevo.");
+            } else {
+                return cedula;
             }
         }
-        for (EstudiDiseño Dis : dis) {
-            if (Dis.getCedula().equals(cedula)) {
-                cedulaRepe = true;
-                break;
-            }
-        }
-        if (cedulaRepe) {
-            System.out.println("Esta cedula ya esta registrada en el sistema. Intente de nuevo.");
-            return ValidarCedula(sc, inge, dis);
-        }
-        return cedula;
     }
 
     public String ValidarTelefono(Scanner sc) {
-        System.out.println("Ingrese el telefono");
-        String tel = sc.nextLine().trim();
-
-        if (tel.isEmpty()) {
-            System.out.println("El telefono no puede estar vacio.");
-            return ValidarTelefono(sc);
+        while (true) {
+            System.out.println("Ingrese el telefono");
+            String tel = sc.nextLine().trim();
+            if (tel.isEmpty()) {
+                System.out.println("El telefono no puede estar vacio.");
+            } else if (!tel.matches("[0-9]+")) {
+                System.out.println("El telefono solo debe contener numeros, sin espacios.");
+            } else if (tel.length() != 10) {
+                System.out.println("Un telefono valido debe tener exactamente 10 digitos.");
+            } else {
+                return tel;
+            }
         }
-        if (!tel.matches("[0-9]+")) {
-            System.out.println("El telefono solo debe contener numeros, sin espacios.");
-            return ValidarTelefono(sc);
-        }
-        if (tel.length() != 10) {
-            System.out.println("Un telefono valido debe tener exactamente 10 digitos.");
-            return ValidarTelefono(sc);
-        }
-        return tel;
     }
 
     public String ValidarSerial(Scanner sc, LinkedList<EstudyInge> inge, LinkedList<EstudiDiseño> dis) {
-        System.out.println("Ingrese el serial");
-        String serial = sc.nextLine().trim().toUpperCase();
+        while (true) {
+            System.out.println("Ingrese el serial");
+            String serial = sc.nextLine().trim().toUpperCase();
 
-        if (serial.isEmpty()) {
-            System.out.println("El serial no puede estar vacio.");
-            return ValidarSerial(sc, inge, dis);
-        }
-        if (!serial.matches("^[0-9]+$")) {
-            System.out.println("El serial solo debe contener numeros");
-            return ValidarSerial(sc, inge, dis);
-        }
-        if (serial.length() < 5 || serial.length() > 15) {
-            System.out.println("El serial debe tener entre 5 y 15 caracteres.");
-            return ValidarSerial(sc, inge, dis);
-        }
-        boolean serialRepe = false;
-
-        for (EstudyInge ing : inge) {
-            if (ing.getSerial().toUpperCase().equals(serial)) {
-                serialRepe = true;
-                break;
+            if (serial.isEmpty()) {
+                System.out.println("El serial no puede estar vacio.");
+                continue;
+            }
+            if (!serial.matches("^[0-9]+$")) {
+                System.out.println("El serial solo debe contener numeros");
+                continue;
+            }
+            if (serial.length() < 5 || serial.length() > 15) {
+                System.out.println("El serial debe tener entre 5 y 15 caracteres.");
+                continue;
+            }            
+            boolean serialRepe = false;
+            for (EstudyInge ing : inge) {
+                String serialIng = ing.getSerial();
+                if (serialIng != null && serialIng.toUpperCase().equals(serial)) {
+                    serialRepe = true;
+                    break;
+                }
+            }
+            if (!serialRepe) {
+                for (EstudiDiseño dise : dis) {
+                    String serialDise = String.valueOf(dise.getSerial());
+                    if (serialDise.equals(serial)) {
+                        serialRepe = true;
+                        break;
+                    }
+                }
+            }
+            if (serialRepe) {
+                System.out.println("Este serial ya se encuentra registrado en el sistema. Intente de nuevo.");
+            } else {
+                return serial;
             }
         }
-        for (EstudiDiseño dise : dis) {
-            String serialDise = dise.getSerial() + "";
-            if (serialDise.equals(serial)) {
-                serialRepe = true;
-                break;
-            }
-        }
-        if (serialRepe) {
-            System.out.println("Este serial ya se encuentra registrado en el sistema.");
-            return ValidarSerial(sc, inge, dis);
-        }
-        return serial;
     }
 
     public String Marca(Scanner sc) {
@@ -189,6 +184,17 @@ public class Validaciones {
                 return "Samsung";
         }
         return "otra";
+    }
+
+    public String ValidarBusqueda(Scanner sc) {
+        String entrada = sc.nextLine().trim();
+
+        if (!entrada.matches("^[0-9]{5,11}$")) {
+            System.out.println("El dato debe ser numerico y tener entre 5 y 11 digitos.");
+            System.out.println("Ingrese la cedula o serial nuevamente:");
+            return ValidarBusqueda(sc);
+        }
+        return entrada;
     }
 
 }

@@ -1,0 +1,28 @@
+Nombre: anakin
+Apellido: skywalker
+Cedula: 10201111233
+Telefono: 3136033731
+Semestre: 3
+Promedio: 3.4
+Serial: 54321
+TipoEquipo: PC
+Marca: HP
+Tamano: 12.0
+Precio: 1200000.0
+SO: Windows 10
+Procesador: AMD Ryzen
+------------------------------------------------------
+Nombre: Obi wan
+Apellido: kenowi
+Cedula: 43480073
+Telefono: 3148753669
+Semestre: 4
+Promedio: 5.0
+Serial: 09876
+TipoEquipo: Tableta
+Marca: HP
+Tamano: 12.0
+Precio: 1200000.0
+Almacenamiento: 512 GB
+Peso: 0.4
+------------------------------------------------------
