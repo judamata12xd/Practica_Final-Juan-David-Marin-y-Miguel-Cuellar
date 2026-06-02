@@ -83,7 +83,7 @@ public class ImportarIng {
                 }
             }
             
-            System.out.println("Archivo de Ingenieria, computadoras y tabletas sincronizados correctamente.");
+            System.out.println("-->Archivo de Ingenieria, computadoras y tabletas sincronizados correctamente.");
 
         } catch (Exception ex) {
             System.out.println("Error al importar: " + ex.getMessage());

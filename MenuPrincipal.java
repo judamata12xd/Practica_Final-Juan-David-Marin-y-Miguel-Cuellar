@@ -22,7 +22,9 @@ public class MenuPrincipal {
         dis = Impodis.ImportarArchivoDIS(c, t);
 
         while (seguir) {
-            System.out.println("-------------Bienvenido a el sistema de prestamos ITM :D------------");
+            System.out.println();
+            System.out.println("----------------------Bienvenido a el sistema de prestamos ITM :D----------------------");
+            System.out.println(" ");
             System.out.println("1. Menu estudiantes ingenieria");
             System.out.println("2. Menu estudiantes diseño");
             System.out.println("3. Inventario total");
@@ -46,6 +48,7 @@ public class MenuPrincipal {
                     Exing.exportarArchivoING(inge, c, t);
                     ExportarDis Exdis = new ExportarDis();
                     Exdis.exportarArchivoDIS(dis, c, t);
+                    System.out.println();
                     System.out.println("Gracias por utilizar el sistema buelva pronto");
                     break;
                 default:

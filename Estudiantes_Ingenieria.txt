@@ -26,3 +26,31 @@ Precio: 1200000.0
 Almacenamiento: 512 GB
 Peso: 0.4
 ------------------------------------------------------
+Nombre: Merlin
+Apellido: Alduino
+Cedula: 1025891042
+Telefono: 3216083704
+Semestre: 3
+Promedio: 2.1
+Serial: 567890
+TipoEquipo: PC
+Marca: Asus
+Tamano: 35.0
+Precio: 1000000.0
+SO: Windows 11
+Procesador: Intel Core i5
+------------------------------------------------------
+Nombre: miguel
+Apellido: cuellar
+Cedula: 1116241473
+Telefono: 3204288460
+Semestre: 2
+Promedio: 3.5
+Serial: 666666
+TipoEquipo: PC
+Marca: Lenovo
+Tamano: 13.0
+Precio: 4500000.0
+SO: Windows 10
+Procesador: Intel Core i5
+------------------------------------------------------

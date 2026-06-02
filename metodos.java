@@ -11,7 +11,7 @@ public class metodos {
         boolean pedir = true;
 
         while (pedir) {
-            System.out.println("\n Ingresar estudiante");
+            System.out.println("----------------------Ingresar estudiante----------------------");
             EstudyInge o = new EstudyInge();
             String cedula = v.ValidarCedula(sc, l, dis);
             o.setCedula(cedula);
@@ -25,8 +25,9 @@ public class metodos {
             o.setNumeroSemestre(v.ValidarSemestre(1, 15, semestre, sc));
             System.out.println("Ingrese el promedio");
             double promedio = v.ValidarDecimal(sc);
-            o.setPromedio(v.ValidarRangoDeci(1, 5, promedio, sc));
-            System.out.println("Que desea prestar?");
+            o.setPromedio(v.ValidarRangoDeci(0, 5, promedio, sc));
+            System.out.println(" ");
+            System.out.println("----------------------¿Que desea prestar?----------------------\n");
             System.out.println("1. Computador");
             System.out.println("2. Tablet");
             int pres = v.ValidarEntero(sc);
@@ -37,7 +38,8 @@ public class metodos {
                     Computadora pc = RegistroPC(serialPC);
                     c.add(pc);
                     o.setSerial(pc.getSerial());
-                    System.out.println("Prestamo realizado");
+                    System.out.println();
+                    System.out.println("PRESTAMO REALIZADO CON EXITO");
                     System.out.println();
                     break;
                 case 2:
@@ -45,7 +47,8 @@ public class metodos {
                     Tableta tab = RegistarTab(serialTAB);
                     t.add(tab);
                     o.setSerial(tab.getSerial());
-                    System.out.println("Prestamo realizado ");
+                    System.out.println();
+                    System.out.println("PRESTAMO REALIZADO CON EXITO ");
                     System.out.println();
                     break;
             }
@@ -86,7 +89,9 @@ public class metodos {
             System.out.println("ingrese la cantidad de asignaturas");
             int asig = v.ValidarEntero(sc);
             o.setCantidadAsignaturas(v.ValidarRango(1, 10, asig, sc));
-            System.out.println("Que desea prestar?");
+            System.out.println();
+            System.out.println("----------------------¿Que desea prestar?----------------------");
+            System.out.println();
             System.out.println("1. Computador");
             System.out.println("2. Tablet");
             int pres = v.ValidarEntero(sc);
@@ -123,15 +128,19 @@ public class metodos {
     public Computadora RegistroPC(String Serial) {
         Computadora pc = new Computadora();
         pc.setSerial(Serial);
-        System.out.println("Ingrese la marca");
+        System.out.println(" ");
         pc.setMargca(v.Marca(sc));
+        System.out.println();
         System.out.println("Ingrese tamaño en pulgadas (e.j: 14.5)");
         double tama = v.ValidarDecimal(sc);
         pc.setTamaño(v.ValidarRangoDeci(7, 35, tama, sc));
+        System.out.println(" ");
         System.out.println("Ingrese el precio");
         double precio = v.ValidarDecimal(sc);
         pc.setPrecio(v.ValidarRangoDeci(800000, 30000000, precio, sc));
-        System.out.println("Seleccione el sistema operativo");
+        System.out.println(" ");
+        System.out.println("----------------------Seleccione el sistema operativo----------------------");
+        System.out.println();
         System.out.println("1. Windows 7");
         System.out.println("2. Windows 10");
         System.out.println("3. Windows 11");
@@ -148,8 +157,10 @@ public class metodos {
                 pc.setSistemaOperativo("Windows 11");
                 break;
         }
-        System.out.println("Seleccione procesador");
-        System.out.println("1.AMD Ryzen");
+        System.out.println(" ");
+        System.out.println("----------------------Seleccione procesador----------------------");
+        System.out.println();
+        System.out.println("1. AMD Ryzen");
         System.out.println("2. Intel Core i5");
         int pro = v.ValidarEntero(sc);
         pro = v.ValidarRango(1, 2, pro, sc);
@@ -167,6 +178,7 @@ public class metodos {
     public Tableta RegistarTab(String serial) {
         Tableta tab = new Tableta();
         tab.setSerial(serial);
+        System.out.println(" ");
         System.out.println("Ingrese la marca");
         tab.setMarca(v.Marca(sc));
         System.out.println("Ingrese tamaño en pulgadas ej. 11.5");
@@ -175,6 +187,7 @@ public class metodos {
         System.out.println("Ingrese el precio");
         double precio = v.ValidarDecimal(sc);
         tab.setPrecio(v.ValidarRangoDeci(300000, 8000000, precio, sc));
+        System.out.println(" ");
         System.out.println("Seleccione el almacenamiento");
         System.out.println("1. 256 GB");
         System.out.println("2. 512 GB");
@@ -309,13 +322,16 @@ public class metodos {
     public LinkedList<EstudyInge> ModificarING(LinkedList<EstudyInge> l, String modificar) {
         if (l.isEmpty()) {
             System.out.println("No hay estudiantes registrados");
+            System.out.println(" ");
         }
 
         boolean encontrado = false;
         for (EstudyInge o : l) {
             if (o.getCedula().equals(modificar) || o.getSerial().equals(modificar)) {
                 encontrado = true;
-                System.out.println("\n Modificando estudiante: " + o.getNombre() + " " + o.getApellido());
+                System.out.println();
+                System.out.println("--> Modificando estudiante: " + o.getNombre() + " " + o.getApellido());
+                System.out.println(" ");
                 System.out.println("Ingrese el nombre");
                 o.setNombre(v.TextoValido(sc));
                 System.out.println("Ingrese el apellido");
@@ -326,8 +342,9 @@ public class metodos {
                 o.setNumeroSemestre(v.ValidarRango(1, 14, semes, sc));
                 System.out.println("Ingrese el promedio");
                 double prome = v.ValidarDecimal(sc);
-                o.setPromedio(v.ValidarRangoDeci(1.0, 5.0, prome, sc));
-                System.out.println("Datos actualizados con exito");
+                o.setPromedio(v.ValidarRangoDeci(0, 5.0, prome, sc));
+                System.out.println();
+                System.out.println("LOS DATOS FUERON ACTUALIZADOS EXITOSAMENTE");
                 break;
             }
         }
@@ -338,6 +355,7 @@ public class metodos {
     }
 
     public void DatosDis(EstudiDiseño o) {
+        System.out.println(" ");
         System.out.println("Ingrese el nombre");
         o.setNombre(v.TextoValido(sc));
         System.out.println("Ingrese el apellido");
@@ -357,7 +375,7 @@ public class metodos {
         System.out.println("ingrese la cantidad de asignaturas");
         int asig = v.ValidarEntero(sc);
         o.setCantidadAsignaturas(v.ValidarRango(1, 14, asig, sc));
-        System.out.println("Datos actualizados con exito");
+        System.out.println("LOS DATOS FUERON ACTUALIZADOS EXITOSAMENTE");
     }
 
     public LinkedList<EstudiDiseño> ModificarDIS(LinkedList<EstudiDiseño> l, String modificar) {
@@ -365,7 +383,7 @@ public class metodos {
         for (EstudiDiseño o : l) {
             if (o.getCedula().equals(modificar)) {
                 encontrado = true;
-                System.out.println("\n Modificando estudiante: " + o.getNombre() + " " + o.getApellido());
+                System.out.println("--> Modificando estudiante: " + o.getNombre() + " " + o.getApellido());
                 DatosDis(o);
                 break;
             }
@@ -381,7 +399,7 @@ public class metodos {
         for (EstudiDiseño o : l) {
             if (o.getSerial() == modificar) {
                 encontrado = true;
-                System.out.println("\n Modificando estudiante: " + o.getNombre() + " " + o.getApellido());
+                System.out.println("--> Modificando estudiante: " + o.getNombre() + " " + o.getApellido());
                 DatosDis(o);
                 break;
             }
@@ -392,8 +410,8 @@ public class metodos {
         return l;
     }
 
-    public LinkedList<EstudyInge> DevolucionING(LinkedList<EstudyInge> l, LinkedList<Computadora> c,
-            LinkedList<Tableta> t) {
+    public LinkedList<EstudyInge> DevolucionING(LinkedList<EstudyInge> l, LinkedList<Computadora> c,LinkedList<Tableta> t) {
+        System.out.println();
         System.out.println("Ingrese la cedula del estudiante");
         String cedula = v.ValidarBusqueda(sc);
 
@@ -405,6 +423,7 @@ public class metodos {
             }
         }
         if (encontrado == null) {
+            System.out.println();
             System.out.println("El estudiante con cedula " + cedula + " No esta registrado");
             return l;
         }
@@ -415,18 +434,20 @@ public class metodos {
             if (!eliminarPC) {
                 t.removeIf(x -> x.getSerial().equals(serial));
             }
+            System.out.println();
             System.out.println("Devolucion exitosa del equipo con serial: " + serial);
         } else {
+            System.out.println();
             System.out.println("El estudiante no tiene ningun equipo asignado");
         }
         l.removeIf(x -> x.getCedula().equals(cedula));
-        System.out.println("El registro del estudiante a salido de la base de datos");
+        System.out.println();
+        System.out.println("-->El registro del estudiante a salido de la base de datos");
         return l;
     }
 
-    public LinkedList<EstudiDiseño> DevolucionDIS(LinkedList<EstudiDiseño> l, LinkedList<Computadora> c,
-            LinkedList<Tableta> t) {
-
+    public LinkedList<EstudiDiseño> DevolucionDIS(LinkedList<EstudiDiseño> l, LinkedList<Computadora> c,LinkedList<Tableta> t) {
+        System.out.println();
         System.out.println("Ingrese la cedula del estudiante");
         String cedula = v.ValidarBusqueda(sc);
 
@@ -438,6 +459,7 @@ public class metodos {
             }
         }
         if (encontrado == null) {
+            System.out.println();
             System.out.println("El estudiante con cedula " + cedula + " No esta registrado");
             return l;
         }
@@ -450,24 +472,30 @@ public class metodos {
             if (!eliminarPC) {
                 t.removeIf(x -> x.getSerial().equals(serial1));
             }
+            System.out.println();
             System.out.println("Devolucion exitosa del equipo con serial: " + serial1);
         } else {
+            System.out.println();
             System.out.println("El estudiante no tienen ningun diapositivo asignado");
         }
         l.removeIf(x -> x.getCedula().equals(cedula));
-        System.out.println("El registro del estudiante a salido de la base de datos");
+        System.out.println();
+        System.out.println("-->El registro del estudiante a salido de la base de datos");
         return l;
     }
 
     public void MostarEquipos(LinkedList<Computadora> c, LinkedList<Tableta> t, String serial) {
         for (Computadora pc : c) {
             if (pc.getSerial().equals(serial)) {
+                System.out.println(" ");
                 System.out.println("----------Computadora----------");
+                System.out.println();
                 System.out.println("Marca: " + pc.getMarca());
                 System.out.println("Tamaño: " + pc.getTamaño());
                 System.out.println("Precio: " + pc.getPrecio());
                 System.out.println("Sistema operativo: " + pc.getSistemaOperativo());
                 System.out.println("Procedador: " + pc.getProcesador());
+                System.out.println(" ");
                 return;
             }
         }
@@ -490,19 +518,24 @@ public class metodos {
         for (EstudyInge e : inge) {
             if (e.getCedula().equals(criterio) || (e.getSerial() != null && e.getSerial().equals(criterio))) {
                 if (e.getSerial() == null || e.getSerial().equals("")) {
-                    System.out.println("El estudiante: " + e.getNombre() + " " + e.getApellido()
-                            + " No tiene diapositivo asisgnado");
+                    System.out.println();
+                    System.out.println("El estudiante: " + e.getNombre() + " " + e.getApellido()+ " No tiene diapositivo asisgnado");
                 } else {
-                    System.out.println("Prestamo encontrado");
-                    System.out.println("El prestamo le pertene a el estudiante: " + e.getNombre() + " " +
-                            e.getApellido() + " Con cedula: " + e.getCedula());
+                    System.out.println(" ");
+                    System.out.println("----------------------Prestamo encontrado----------------------\n");
+                    System.out.println("El prestamo le pertene a el estudiante: " + e.getNombre() + " " + e.getApellido());
+                    System.out.println("");
+                    System.out.println("Con cedula: " + e.getCedula());
+                    System.out.println();
                     System.out.println("Serial equipo: " + e.getSerial());
                     MostarEquipos(c, t, e.getSerial());
                     return inge;
                 }
             }
         }
+        System.out.println();
         System.out.println("La cedula o serial: " + criterio + " NO existe");
+        System.out.println();
         return inge;
     }
 
@@ -512,13 +545,17 @@ public class metodos {
         for (EstudiDiseño d : dis) {
             if (d.getCedula().equals(cedula)) {
                 if (d.getSerial() <= 0) {
-                    System.out.println("El estudiante: " + d.getNombre() + " " + d.getApellido()
-                            + " No tiene diapositivo asisgnado");
+                    System.out.println();
+                    System.out.println("El estudiante: " + d.getNombre() + " " + d.getApellido()+ " No tiene diapositivo asisgnado");
                     return dis;
                 } else {
-                    System.out.println("Prestamo encontrado");
-                    System.out.println("El prestamo le pertene a el estudiante: " + d.getNombre() + " " +
-                            d.getApellido() + " Con cedula: " + d.getCedula());
+                    System.out.println();
+                    System.out.println("----------------------Prestamo encontrado----------------------\n");
+                    System.out.println();
+                    System.out.println("El prestamo le pertene a el estudiante: " + d.getNombre() + " " + d.getApellido());
+                    System.out.println();
+                    System.out.println("Con cedula: " + d.getCedula());
+                    System.out.println();
                     System.out.println("Serial equipo: " + d.getSerial());
                     MostarEquipos(c, t, String.valueOf(d.getSerial()));
                     return dis;
@@ -526,7 +563,9 @@ public class metodos {
             }
 
         }
+        System.out.println();
         System.out.println("La cedula : " + cedula + " NO existe");
+        System.out.println();
         return dis;
     }
 
@@ -534,6 +573,7 @@ public class metodos {
             LinkedList<Tableta> t, int serial) {
 
         if (serial <= 0) {
+            System.out.println();
             System.out.println("El serial ingresado no es valido");
             return dis;
         }
@@ -548,10 +588,12 @@ public class metodos {
                 return dis;
             }
         }
-
+        System.out.println();
         System.out.println("El serial : " + serial + " NO existe");
+        System.out.println();
 
         return dis;
     }
 
 }
+

@@ -66,8 +66,4 @@ public class EstudyInge {
     public void setSerial(String serial) {
         this.serial = serial;
     }
-
-    
-
-   
 }

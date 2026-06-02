@@ -10,6 +10,7 @@ public class Validaciones {
                 int numero = Integer.parseInt(entrada);
                 return numero;
             } catch (NumberFormatException e) {
+                System.out.println();
                 System.out.println("Por favor ingrese un digito numerico valido.");
             }
         }
@@ -23,6 +24,7 @@ public class Validaciones {
             decimal = decimal.replace(",", ".");
             return Double.parseDouble(decimal);
         } else {
+            System.out.println();
             System.out.println("Ingrese un numero decimal valido");
             return ValidarDecimal(sc);
         }
@@ -30,6 +32,7 @@ public class Validaciones {
 
     public int ValidarRango(int n1, int n2, int numero, Scanner sc) {
         while (numero < n1 || numero > n2) {
+            System.out.println();
             System.out.println("Por favor ingrese un rango de : " + n1 + " hasta " + n2);
             numero = ValidarEntero(sc);
         }
@@ -38,6 +41,7 @@ public class Validaciones {
 
     public int ValidarSemestre(int n1, int n2, int numero, Scanner sc) {
         while (numero < n1 || numero > n2) {
+            System.out.println();
             System.out.println("Por favor ingrese un semestre valido : " + n1 + " hasta " + n2);
             numero = ValidarEntero(sc);
         }
@@ -47,6 +51,7 @@ public class Validaciones {
     public double ValidarRangoDeci(double n1, double n2, double numero, Scanner sc) {
 
         while (numero < n1 || numero > n2) {
+            System.out.println();
             System.out.println("Ingrese un rango entre : " + n1 + " hasta " + n2);
             numero = ValidarDecimal(sc);
         }
@@ -58,10 +63,13 @@ public class Validaciones {
         while (true) {
             String texto = sc.nextLine().trim();
             if (texto.isEmpty()) {
+                System.out.println();
                 System.out.println("El campo no puede estar vacio. Intente de nuevo.");
-            } else if (texto.length() > limite || texto.length() < 3) {
+            } else if (texto.length() > limite || texto.length() < 2) {
+                System.out.println();
                 System.out.println("El texto es muy largo Maximo " + limite + " caracteres. Intente de nuevo.");
-            } else if (!texto.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+            } else if (!texto.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ @ ]+")) {
+                System.out.println();
                 System.out.println("Solo se permiten letras (sin caracteres especiales o numeros). Intente de nuevo.");
             } else {
                 return texto;
@@ -71,14 +79,19 @@ public class Validaciones {
 
     public String ValidarCedula(Scanner sc, LinkedList<EstudyInge> inge, LinkedList<EstudiDiseño> dis) {
         while (true) {
+            System.out.println(" ");
             System.out.println("Ingrese la cedula");
             String cedula = sc.nextLine().trim();
             if (!cedula.matches("[0-9]+")) {
+                System.out.println();
                 System.out.println("La cedula solo debe contener numeros y no puede tener espacios en blanco.");
+                System.out.println();
                 continue;
             }
             if (cedula.length() < 7 || cedula.length() > 11) {
+                System.out.println();
                 System.out.println("La cedula debe tener entre 7 y 11 digitos.");
+                System.out.println();
                 continue;
             }
             boolean cedulaRepe = false;
@@ -97,7 +110,9 @@ public class Validaciones {
                 }
             }
             if (cedulaRepe) {
+                System.out.println();
                 System.out.println("Esta cedula ya esta registrada en el sistema. Intente de nuevo.");
+                System.out.println();
             } else {
                 return cedula;
             }
@@ -109,11 +124,17 @@ public class Validaciones {
             System.out.println("Ingrese el telefono");
             String tel = sc.nextLine().trim();
             if (tel.isEmpty()) {
+                System.out.println();
                 System.out.println("El telefono no puede estar vacio.");
+                System.out.println();
             } else if (!tel.matches("[0-9]+")) {
+                System.out.println();
                 System.out.println("El telefono solo debe contener numeros, sin espacios.");
+                System.out.println();
             } else if (tel.length() != 10) {
+                System.out.println();
                 System.out.println("Un telefono valido debe tener exactamente 10 digitos.");
+                System.out.println();
             } else {
                 return tel;
             }
@@ -122,6 +143,7 @@ public class Validaciones {
 
     public String ValidarSerial(Scanner sc, LinkedList<EstudyInge> inge, LinkedList<EstudiDiseño> dis) {
         while (true) {
+            System.out.println();
             System.out.println("Ingrese el serial");
             String serial = sc.nextLine().trim().toUpperCase();
 
@@ -163,7 +185,7 @@ public class Validaciones {
     }
 
     public String Marca(Scanner sc) {
-        System.out.println("Marcas Disponibles en el inventario");
+        System.out.println("----------------------Marcas Disponibles en el inventario----------------------\n");
         System.out.println("1. Lenovo");
         System.out.println("2. HP");
         System.out.println("3. Asus");

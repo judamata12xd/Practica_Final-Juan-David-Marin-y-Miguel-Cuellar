@@ -58,7 +58,7 @@ public class ExportarDis {
                 }
                 e.write("------------------------------------------------------\n");
             }
-            System.out.println("Archivo de Diseño y sus equipos exportados correctamente.");
+            System.out.println("-->Archivo de Diseño y sus equipos exportados correctamente.");
 
         } catch (IOException ex) {
             System.out.println("Error al exportar el archivo: " + ex.getMessage());

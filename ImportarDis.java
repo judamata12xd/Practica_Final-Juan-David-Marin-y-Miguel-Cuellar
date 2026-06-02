@@ -90,7 +90,7 @@ public class ImportarDis {
                 }
             }
             
-            System.out.println("Archivo de Diseño, computadoras y tabletas sincronizados correctamente.");
+            System.out.println("-->Archivo de Diseño, computadoras y tabletas sincronizados correctamente.");
 
         } catch (Exception ex) {
             System.out.println("Error al importar: " + ex.getMessage());
